@@ -38,7 +38,8 @@ class TouchCanvasUtil {
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
       default:
-        throw Exception("gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
+        throw Exception(
+            "gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
     }
   }
 
@@ -57,6 +58,7 @@ class TouchCanvasUtil {
     required GestureDragDownCallback? onPanDown,
     required GestureTapDownCallback? onSecondaryTapDown,
     required GestureTapUpCallback? onSecondaryTapUp,
+    required GestureTapDownCallback? onDoubleTapDown,
   }) {
     var map = <GestureType, Function>{};
     if (onTapDown != null) {
@@ -68,7 +70,8 @@ class TouchCanvasUtil {
       map.putIfAbsent(GestureType.onLongPressStart, () => onLongPressStart);
     }
     if (onLongPressMoveUpdate != null) {
-      map.putIfAbsent(GestureType.onLongPressMoveUpdate, () => onLongPressMoveUpdate);
+      map.putIfAbsent(
+          GestureType.onLongPressMoveUpdate, () => onLongPressMoveUpdate);
     }
     if (onLongPressEnd != null) {
       map.putIfAbsent(GestureType.onLongPressEnd, () => onLongPressEnd);
@@ -102,6 +105,9 @@ class TouchCanvasUtil {
     }
     if (onSecondaryTapUp != null) {
       map.putIfAbsent(GestureType.onSecondaryTapUp, () => onSecondaryTapUp);
+    }
+    if (onDoubleTapDown != null) {
+      map.putIfAbsent(GestureType.onDoubleTapDown, () => onDoubleTapDown);
     }
 
     return map;

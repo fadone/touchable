@@ -52,7 +52,8 @@ class TouchyCanvas {
     _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
-  void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
+  void clipRect(Rect rect,
+      {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRectShape(rect, clipOp: clipOp));
   }
@@ -76,6 +77,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawCircle(c, radius, paint);
     _shapeHandler.addShape(Circle(
@@ -98,6 +100,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -121,6 +124,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawLine(p1, p2, paint);
     _shapeHandler.addShape(Line(p1, p2,
@@ -141,6 +145,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -163,6 +168,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawOval(rect, paint);
     _shapeHandler.addShape(Oval(rect,
@@ -183,6 +189,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -211,6 +218,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawPath(path, paint);
     _shapeHandler.addShape(PathShape(path,
@@ -231,6 +239,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -254,6 +263,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawPoints(pointMode, points, paint);
     _shapeHandler.addShape(Point(pointMode, points,
@@ -274,6 +284,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -296,6 +307,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawRRect(rrect, paint);
     _shapeHandler.addShape(RoundedRectangle(rrect,
@@ -316,6 +328,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -339,6 +352,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawRawPoints(pointMode, points, paint);
     List<Offset> offsetPoints = [];
@@ -363,6 +377,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -385,6 +400,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawRect(rect, paint);
     _shapeHandler.addShape(Rectangle(rect,
@@ -405,10 +421,12 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
-  void drawShadow(Path path, Color color, double elevation, bool transparentOccluder) {
+  void drawShadow(
+      Path path, Color color, double elevation, bool transparentOccluder) {
     _canvas.drawShadow(path, color, elevation, transparentOccluder);
     // _shapeHandler.addShape(PathShape(path));
   }
@@ -433,9 +451,12 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawImage(image, p, paint);
-    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
+    _shapeHandler.addShape(Rectangle(
+        Rect.fromLTWH(
+            p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
@@ -453,6 +474,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         )));
   }
 
@@ -478,6 +500,7 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    GestureTapDownCallback? onDoubleTapDown,
   }) {
     _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
     var arc = Arc(rect, startAngle, sweepAngle, useCenter,
@@ -498,6 +521,7 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onDoubleTapDown: onDoubleTapDown,
         ));
     _shapeHandler.addShape(arc);
   }
